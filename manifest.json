@@ -20,9 +20,8 @@
       "main": "index.html",
       "permissions": {
         "sandbox": [
-          "allow-scripts",
-          "allow-same-origin",
-          "allow-popups"
+          "allow-popups",
+          "allow-downloads"
         ]
       }
     }
