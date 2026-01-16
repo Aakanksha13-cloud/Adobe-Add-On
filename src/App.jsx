@@ -77,88 +77,94 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1 className="app-title">✨ Content Publisher</h1>
-      
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label className="form-label">Content Text</label>
-          <textarea
-            className="textarea-input"
-            value={contentText}
-            onChange={(e) => setContentText(e.target.value)}
-            placeholder="Enter content text..."
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="form-label">Content Type</label>
-          <select
-            className="select-input"
-            value={contentType}
-            onChange={(e) => setContentType(e.target.value)}
-          >
-            <option value="image">Image</option>
-            <option value="design">Design</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <div className="toggle-container">
-            <span className="toggle-label">Compliance Check</span>
-            <label className="toggle-switch">
-              <input
-                type="checkbox"
-                checked={complianceCheck}
-                onChange={(e) => setComplianceCheck(e.target.checked)}
-              />
-              <span className="slider"></span>
-            </label>
+      <div className="content-area">
+        <h1 className="app-title">✨ Content Publisher</h1>
+        
+        <div className="form-section">
+          <div className="form-group">
+            <label className="form-label">📝 Content Type</label>
+            <select
+              className="select-input"
+              value={contentType}
+              onChange={(e) => setContentType(e.target.value)}
+            >
+              <option value="image">🖼️ Image</option>
+              <option value="design">🎨 Design</option>
+            </select>
           </div>
-        </div>
 
-        <div className="form-group">
-          <label className="form-label">Brand Details</label>
-          <div className="file-input-wrapper">
-            <input
-              type="file"
-              className="file-input"
-              onChange={handleBrandImagesChange}
-              accept="image/*"
-              multiple
-            />
-            <div className="file-input-text">
-              Upload Brand Images
+          <div className="form-group">
+            <div className="toggle-container">
+              <span className="toggle-label">✅ Compliance Check</span>
+              <label className="toggle-switch">
+                <input
+                  type="checkbox"
+                  checked={complianceCheck}
+                  onChange={(e) => setComplianceCheck(e.target.checked)}
+                />
+                <span className="slider"></span>
+              </label>
             </div>
-            {brandImages && (
-              <div className="file-name">
-                {Array.from(brandImages).map(f => f.name).join(', ')}
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">🎯 Brand Assets</label>
+            <div className="file-input-wrapper">
+              <input
+                type="file"
+                className="file-input"
+                onChange={handleBrandImagesChange}
+                accept="image/*"
+                multiple
+              />
+              <div className="file-input-text">
+                📎 Upload Images
               </div>
-            )}
+              {brandImages && (
+                <div className="file-name">
+                  {Array.from(brandImages).length} file(s) selected
+                </div>
+              )}
+            </div>
           </div>
         </div>
+      </div>
 
-        <button type="submit" className="submit-button">
-          Create Content
-        </button>
-      </form>
+      <div className="bottom-section">
+        <form onSubmit={handleSubmit} className="input-form">
+          <div className="input-container">
+            <textarea
+              className="message-input"
+              value={contentText}
+              onChange={(e) => setContentText(e.target.value)}
+              placeholder="✍️ Type your content here..."
+              required
+              rows="3"
+            />
+          </div>
+          
+          <button type="submit" className="create-button">
+            ✨ Create
+          </button>
+        </form>
 
-      {showActions && (
-        <div className="action-buttons">
-          <button
-            className="action-button linkedin-button"
-            onClick={handlePostToLinkedIn}
-          >
-            🔗 LinkedIn
-          </button>
-          <button
-            className="action-button slack-button"
-            onClick={handleSendToSlack}
-          >
-            💬 Slack
-          </button>
-        </div>
-      )}
+        {showActions && (
+          <div className="action-buttons">
+            <button
+              className="action-button linkedin-button"
+              onClick={handlePostToLinkedIn}
+            >
+              🔗 LinkedIn
+            </button>
+            <button
+              className="action-button slack-button"
+              onClick={handleSendToSlack}
+            >
+              💬 Slack
+            </button>
+          </div>
+        )}
+      </div>
 
       <ToastContainer />
     </div>
