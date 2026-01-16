@@ -11,7 +11,11 @@ body {
 }
 
 .app-container {
-  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  --mobile-tab-bar-z-index: 10;
+  --moblie-tab-pill-min-width: 80px;
   margin: 0 auto;
   background: white;
   border-radius: 20px;
