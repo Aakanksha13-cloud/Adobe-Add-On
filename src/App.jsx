@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   const [contentText, setContentText] = useState('');
-  const [contentType, setContentType] = useState('image');
+  const [contentType, setContentType] = useState('');
   const [complianceCheck, setComplianceCheck] = useState(false);
   const [copyrightCheck, setCopyrightCheck] = useState(false);
   const [brandImages, setBrandImages] = useState(null);
@@ -87,15 +87,19 @@ function App() {
           <div className="input-box">
             {/* Icons Row Above Input */}
             <div className="input-toolbar">
-              <select
-                className="toolbar-dropdown"
-                value={contentType}
-                onChange={(e) => setContentType(e.target.value)}
-                title="Content Type"
-              >
-                <option value="image">🖼️ Image</option>
-                <option value="design">🎨 Design</option>
-              </select>
+              <div className="dropdown-container">
+                <span className="dropdown-text">Content Type ▼</span>
+                <select
+                  className="toolbar-dropdown"
+                  value={contentType}
+                  onChange={(e) => setContentType(e.target.value)}
+                  title="Content Type"
+                >
+                  <option value="" disabled>Select type</option>
+                  <option value="image">🖼️ Image</option>
+                  <option value="design">🎨 Design</option>
+                </select>
+              </div>
               
               <label className="toolbar-icon" title="Upload Brand Images">
                 <input
