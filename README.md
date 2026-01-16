@@ -33,15 +33,14 @@ cd Adobe-Add-On
 npm install
 ```
 
-3. Build the project:
-```bash
-npm run build
-```
-
-4. Start development server:
+3. Start development server:
 ```bash
 npm start
 ```
+
+The app will be available at `http://localhost:9000`
+
+**Note:** This is currently a standalone React application. Adobe Express SDK integration will be added later for deployment as an Adobe Add-on.
 
 ## Development
 
