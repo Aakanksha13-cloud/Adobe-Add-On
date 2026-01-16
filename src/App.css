@@ -88,17 +88,20 @@ body {
 .dropdown-container.highlight {
   background: rgba(255, 107, 107, 0.3);
   border: 2px solid #ff6b6b;
-  animation: pulse 0.5s ease-in-out infinite;
+  animation: highlight-pulse 0.5s ease-in-out 3;
+  box-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
 }
 
-@keyframes pulse {
-  0%, 100% {
+@keyframes highlight-pulse {
+  0%, 100% { 
+    border-color: #f44336;
+    box-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4);
   }
-  50% {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px 5px rgba(255, 107, 107, 0.4);
+  50% { 
+    border-color: #ff9800;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.8);
+    transform: scale(1.05);
   }
 }
 
@@ -142,6 +145,14 @@ body {
   padding: 2px;
   width: auto;
   height: auto;
+}
+
+.sdk-status {
+  font-size: 12px;
+  margin-top: 5px;
+  font-style: italic;
+  text-align: center;
+  color: #ff9800;
 }
 
 .toolbar-icon:hover {
