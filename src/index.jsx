@@ -65,8 +65,10 @@ const initAdobeSDK = async () => {
       console.log("Adobe SDK initialized successfully");
     } catch (error) {
       // Gracefully handle SDK initialization errors
-      console.log("Adobe SDK initialization failed - using fallback notifications (react-toastify)");
-      console.log("This is normal when running outside Adobe Express");
+      // This is normal when running outside Adobe Express - using react-toastify fallback
+      if (process.env.NODE_ENV === 'development') {
+        console.log("Adobe SDK not available - using react-toastify (normal outside Adobe Express)");
+      }
       window.adobeSDKReady = false;
     }
   }
