@@ -80,51 +80,28 @@ function App() {
       <div className="content-area">
         <h1 className="app-title">✨ Content Publisher</h1>
         
-        <div className="form-section">
-          <div className="form-group">
-            <label className="form-label">📝 Content Type</label>
-            <select
-              className="select-input"
-              value={contentType}
-              onChange={(e) => setContentType(e.target.value)}
-            >
-              <option value="image">🖼️ Image</option>
-              <option value="design">🎨 Design</option>
-            </select>
-          </div>
-
-          <div className="form-group">
-            <div className="toggle-container">
-              <span className="toggle-label">✅ Compliance Check</span>
-              <label className="toggle-switch">
-                <input
-                  type="checkbox"
-                  checked={complianceCheck}
-                  onChange={(e) => setComplianceCheck(e.target.checked)}
-                />
-                <span className="slider"></span>
-              </label>
+        <div className="info-section">
+          <div className="info-card">
+            <div className="info-icon">🖼️</div>
+            <div className="info-text">
+              <strong>Content Type</strong>
+              <span>Select image or design from input controls</span>
             </div>
           </div>
-
-          <div className="form-group">
-            <label className="form-label">🎯 Brand Assets</label>
-            <div className="file-input-wrapper">
-              <input
-                type="file"
-                className="file-input"
-                onChange={handleBrandImagesChange}
-                accept="image/*"
-                multiple
-              />
-              <div className="file-input-text">
-                📎 Upload Images
-              </div>
-              {brandImages && (
-                <div className="file-name">
-                  {Array.from(brandImages).length} file(s) selected
-                </div>
-              )}
+          
+          <div className="info-card">
+            <div className="info-icon">📎</div>
+            <div className="info-text">
+              <strong>Brand Assets</strong>
+              <span>{brandImages ? `${Array.from(brandImages).length} file(s) selected` : 'No files selected'}</span>
+            </div>
+          </div>
+          
+          <div className="info-card">
+            <div className="info-icon">{complianceCheck ? '✅' : '☑️'}</div>
+            <div className="info-text">
+              <strong>Compliance</strong>
+              <span>{complianceCheck ? 'Enabled' : 'Disabled'}</span>
             </div>
           </div>
         </div>

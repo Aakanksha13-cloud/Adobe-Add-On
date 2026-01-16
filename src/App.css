@@ -40,8 +40,58 @@ body {
   padding-bottom: 10px;
 }
 
-.form-section {
-  margin-top: 10px;
+.info-section {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+}
+
+.info-icon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f093fb08 0%, #667eea08 100%);
+  border-radius: 8px;
+}
+
+.info-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.info-text strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: #764ba2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-text span {
+  font-size: 12px;
+  color: #666666;
 }
 
 .bottom-section {
