@@ -132,7 +132,7 @@ function App() {
 
       <div className="bottom-section">
         <form onSubmit={handleSubmit} className="input-form">
-          <div className="input-container">
+          <div className="input-wrapper">
             <textarea
               className="message-input"
               value={contentText}
@@ -141,6 +141,46 @@ function App() {
               required
               rows="3"
             />
+            <div className="input-actions">
+              {/* Content Type Dropdown */}
+              <div className="action-icon-wrapper">
+                <select
+                  className="icon-dropdown"
+                  value={contentType}
+                  onChange={(e) => setContentType(e.target.value)}
+                  title="Content Type"
+                >
+                  <option value="image">🖼️</option>
+                  <option value="design">🎨</option>
+                </select>
+              </div>
+              
+              {/* Brand Images Upload */}
+              <div className="action-icon-wrapper">
+                <label className="icon-button" title="Upload Brand Images">
+                  <input
+                    type="file"
+                    className="hidden-file-input"
+                    onChange={handleBrandImagesChange}
+                    accept="image/*"
+                    multiple
+                  />
+                  📎
+                </label>
+              </div>
+              
+              {/* Compliance Check Toggle */}
+              <div className="action-icon-wrapper">
+                <button
+                  type="button"
+                  className={`icon-button ${complianceCheck ? 'active' : ''}`}
+                  onClick={() => setComplianceCheck(!complianceCheck)}
+                  title="Compliance Check"
+                >
+                  {complianceCheck ? '✅' : '☑️'}
+                </button>
+              </div>
+            </div>
           </div>
           
           <button type="submit" className="create-button">

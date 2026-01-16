@@ -55,8 +55,83 @@ body {
   margin-bottom: 8px;
 }
 
-.input-container {
+.input-wrapper {
+  position: relative;
+  display: flex;
+  gap: 8px;
   margin-bottom: 8px;
+  align-items: stretch;
+}
+
+.input-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+.action-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+}
+
+.icon-button:hover {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #f093fb08 0%, #667eea08 100%);
+  transform: scale(1.05);
+}
+
+.icon-button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.icon-dropdown {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 18px;
+  text-align: center;
+  transition: all 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0;
+}
+
+.icon-dropdown:hover {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #f093fb08 0%, #667eea08 100%);
+  transform: scale(1.05);
+}
+
+.icon-dropdown:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.hidden-file-input {
+  display: none;
 }
 
 .app-title {
@@ -117,7 +192,7 @@ body {
 }
 
 .message-input {
-  width: 100%;
+  flex: 1;
   padding: 10px 12px;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
@@ -127,6 +202,7 @@ body {
   resize: none;
   font-family: inherit;
   line-height: 1.4;
+  min-height: 110px;
 }
 
 .message-input:focus {
