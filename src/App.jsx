@@ -46,13 +46,14 @@ function App() {
       image: brandImages ? Array.from(brandImages).map(f => f.name).join(', ') : 'No image'
     };
     
-    toast.info(`🔗 Posting to LinkedIn\nText: ${params.text}\nImage: ${params.image}`, {
+    toast.info('🔗 Posting to LinkedIn...', {
       position: "top-center",
-      autoClose: 4000,
+      autoClose: 3000,
       style: {
         background: 'linear-gradient(135deg, #0077b5 0%, #005885 100%)',
         color: 'white',
-        borderRadius: '12px'
+        borderRadius: '12px',
+        fontWeight: '600'
       }
     });
   };
@@ -62,13 +63,14 @@ function App() {
       text: contentText
     };
     
-    toast.info(`💬 Sending to Slack\nMessage: ${params.text}`, {
+    toast.info('💬 Sending to Slack...', {
       position: "top-center",
-      autoClose: 4000,
+      autoClose: 3000,
       style: {
         background: 'linear-gradient(135deg, #611f69 0%, #4a154b 100%)',
         color: 'white',
-        borderRadius: '12px'
+        borderRadius: '12px',
+        fontWeight: '600'
       }
     });
   };
