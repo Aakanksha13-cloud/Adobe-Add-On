@@ -79,6 +79,23 @@ body {
 .dropdown-container {
   position: relative;
   cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.dropdown-container.highlight {
+  background: rgba(255, 107, 107, 0.2);
+  animation: pulse 0.5s ease-in-out 3;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .dropdown-text {

@@ -21,9 +21,33 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    // Validate content type selection
+    if (!contentType) {
+      toast.error('Please choose the type of content you want to create', {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        style: {
+          background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)',
+          color: 'white',
+          borderRadius: '12px',
+          fontWeight: '600'
+        }
+      });
+      // Highlight dropdown
+      document.querySelector('.dropdown-container').classList.add('highlight');
+      setTimeout(() => {
+        document.querySelector('.dropdown-container').classList.remove('highlight');
+      }, 2000);
+      return;
+    }
+    
     // Simulate content creation
     setTimeout(() => {
-      toast.success('✨ Content Created Successfully!', {
+      toast.success('Created Successfully', {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -42,14 +66,13 @@ function App() {
   };
 
   const handlePostToLinkedIn = () => {
-    const params = {
-      text: contentText,
-      image: brandImages ? Array.from(brandImages).map(f => f.name).join(', ') : 'No image'
-    };
-    
-    toast.info('🔗 Posting to LinkedIn...', {
+    toast.success('Posted on LinkedIn Successfully', {
       position: "top-center",
       autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
       style: {
         background: 'linear-gradient(135deg, #0077b5 0%, #005885 100%)',
         color: 'white',
@@ -60,13 +83,13 @@ function App() {
   };
 
   const handleSendToSlack = () => {
-    const params = {
-      text: contentText
-    };
-    
-    toast.info('💬 Sending to Slack...', {
+    toast.success('Message sent successfully', {
       position: "top-center",
       autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
       style: {
         background: 'linear-gradient(135deg, #611f69 0%, #4a154b 100%)',
         color: 'white',
@@ -85,10 +108,21 @@ function App() {
       <div className="bottom-section">
         <form onSubmit={handleSubmit} className="input-form">
           <div className="input-box">
-            {/* Icons Row Above Input */}
+            {/* Text Input */}
+            <textarea
+              className="message-input"
+              value={contentText}
+              onChange={(e) => setContentText(e.target.value)}
+              placeholder="✍️ Type your content here..."
+              required
+            />
+            
+            {/* Icons Row Below Input */}
             <div className="input-toolbar">
               <div className="dropdown-container">
-                <span className="dropdown-text">Content Type ▼</span>
+                <span className="dropdown-text">
+                  {contentType ? (contentType === 'image' ? '🖼️ Image' : '🎨 Design') : 'Content Type ▼'}
+                </span>
                 <select
                   className="toolbar-dropdown"
                   value={contentType}
@@ -131,15 +165,6 @@ function App() {
                 {copyrightCheck ? '©️' : '©'}
               </button>
             </div>
-            
-            {/* Text Input */}
-            <textarea
-              className="message-input"
-              value={contentText}
-              onChange={(e) => setContentText(e.target.value)}
-              placeholder="✍️ Type your content here..."
-              required
-            />
           </div>
           
           <button type="submit" className="create-button">
