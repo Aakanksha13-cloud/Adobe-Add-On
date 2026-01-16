@@ -2,46 +2,47 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
-// Try to import Adobe Add-on SDK (will work when running in Adobe Express)
-let addOnUISdk = null;
-
-// Function to show modal dialogs using Adobe SDK
-const showAdobeDialog = async (variant, title, description) => {
-  if (addOnUISdk) {
-    try {
-      const result = await addOnUISdk.app.showModalDialog({
-        variant: variant, // "information", "confirmation", "warning", "error"
-        title: title,
-        description: description,
-        buttonLabels: { primary: "OK" }
-      });
-      return result;
-    } catch (error) {
-      console.log("Error showing Adobe modal:", error);
-    }
-  }
-  return null;
-};
-
-// Initialize Adobe SDK when running in Adobe Express
-const initAdobeSDK = async () => {
-  try {
-    // Dynamic import for Adobe SDK (only works in Adobe Express environment)
-    const sdk = await import("https://express.adobe.com/static/add-on-sdk/sdk.js");
-    addOnUISdk = sdk.default;
-    await addOnUISdk.ready;
-    console.log("Adobe Add-on SDK is ready!");
-    
-    // Make dialog functions available globally
-    window.showAdobeDialog = showAdobeDialog;
-    window.adobeSDKReady = true;
-  } catch (error) {
-    console.log("Running outside Adobe Express - using fallback notifications");
+// Check for Adobe SDK availability at runtime (will be available when loaded in Adobe Express)
+const initAdobeSDK = () => {
+  // Adobe SDK is loaded via script tag in index.html when running in Adobe Express
+  // Check if it's available globally
+  if (typeof window !== 'undefined') {
     window.adobeSDKReady = false;
+    
+    // Try to check for Adobe SDK presence
+    const checkSDK = () => {
+      if (window.addOnUISdk) {
+        window.addOnUISdk.ready.then(() => {
+          console.log("Adobe Add-on SDK is ready!");
+          window.adobeSDKReady = true;
+          
+          // Create global function to show Adobe dialogs
+          window.showAdobeDialog = async (variant, title, description) => {
+            try {
+              const result = await window.addOnUISdk.app.showModalDialog({
+                variant: variant,
+                title: title,
+                description: description,
+                buttonLabels: { primary: "OK" }
+              });
+              return result;
+            } catch (error) {
+              console.log("Error showing Adobe modal:", error);
+              return null;
+            }
+          };
+        });
+      } else {
+        console.log("Running outside Adobe Express - using fallback notifications");
+      }
+    };
+    
+    // Check after a short delay to allow SDK to load
+    setTimeout(checkSDK, 100);
   }
 };
 
-// Initialize SDK
+// Initialize
 initAdobeSDK();
 
 // Render React App
