@@ -7,6 +7,7 @@ function App() {
   const [contentText, setContentText] = useState('');
   const [contentType, setContentType] = useState('image');
   const [complianceCheck, setComplianceCheck] = useState(false);
+  const [copyrightCheck, setCopyrightCheck] = useState(false);
   const [brandImages, setBrandImages] = useState(null);
   const [showActions, setShowActions] = useState(false);
 
@@ -84,26 +85,18 @@ function App() {
       <div className="bottom-section">
         <form onSubmit={handleSubmit} className="input-form">
           <div className="input-box">
-            <textarea
-              className="message-input"
-              value={contentText}
-              onChange={(e) => setContentText(e.target.value)}
-              placeholder="✍️ Type your content here..."
-              required
-            />
+            {/* Icons Row Above Input */}
             <div className="input-toolbar">
-              {/* Content Type Dropdown */}
               <select
-                className="toolbar-icon"
+                className="toolbar-dropdown"
                 value={contentType}
                 onChange={(e) => setContentType(e.target.value)}
                 title="Content Type"
               >
-                <option value="image">🖼️</option>
-                <option value="design">🎨</option>
+                <option value="image">🖼️ Image</option>
+                <option value="design">🎨 Design</option>
               </select>
               
-              {/* Brand Images Upload */}
               <label className="toolbar-icon" title="Upload Brand Images">
                 <input
                   type="file"
@@ -113,9 +106,9 @@ function App() {
                   multiple
                 />
                 📎
+                {brandImages && <span className="file-count">{Array.from(brandImages).length}</span>}
               </label>
               
-              {/* Compliance Check Toggle */}
               <button
                 type="button"
                 className={`toolbar-icon ${complianceCheck ? 'active' : ''}`}
@@ -124,7 +117,25 @@ function App() {
               >
                 {complianceCheck ? '✅' : '☑️'}
               </button>
+              
+              <button
+                type="button"
+                className={`toolbar-icon ${copyrightCheck ? 'active' : ''}`}
+                onClick={() => setCopyrightCheck(!copyrightCheck)}
+                title="Copyright Check"
+              >
+                {copyrightCheck ? '©️' : '©'}
+              </button>
             </div>
+            
+            {/* Text Input */}
+            <textarea
+              className="message-input"
+              value={contentText}
+              onChange={(e) => setContentText(e.target.value)}
+              placeholder="✍️ Type your content here..."
+              required
+            />
           </div>
           
           <button type="submit" className="create-button">
