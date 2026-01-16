@@ -22,7 +22,7 @@ function App() {
     
     // Simulate content creation
     setTimeout(() => {
-      toast.success('Created Successfully! 🎉', {
+      toast.success('Content Created Successfully', {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -46,7 +46,7 @@ function App() {
       image: brandImages ? Array.from(brandImages).map(f => f.name).join(', ') : 'No image'
     };
     
-    toast.info(`📤 Posting to LinkedIn...\nText: ${params.text}\nImage: ${params.image}`, {
+    toast.info(`Posting to LinkedIn\nText: ${params.text}\nImage: ${params.image}`, {
       position: "top-center",
       autoClose: 4000,
       style: {
@@ -62,7 +62,7 @@ function App() {
       text: contentText
     };
     
-    toast.info(`💬 Sending to Slack...\nMessage: ${params.text}`, {
+    toast.info(`Sending Message to Slack\nMessage: ${params.text}`, {
       position: "top-center",
       autoClose: 4000,
       style: {
@@ -75,7 +75,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1 className="app-title">✨ Content Publisher</h1>
+      <h1 className="app-title">Content Publisher</h1>
       
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -84,7 +84,7 @@ function App() {
             className="textarea-input"
             value={contentText}
             onChange={(e) => setContentText(e.target.value)}
-            placeholder="Enter your content text here..."
+            placeholder="Enter content text..."
             required
           />
         </div>
@@ -126,7 +126,7 @@ function App() {
               multiple
             />
             <div className="file-input-text">
-              📁 Click to upload brand images
+              Upload Brand Images
             </div>
             {brandImages && (
               <div className="file-name">
@@ -147,13 +147,13 @@ function App() {
             className="action-button linkedin-button"
             onClick={handlePostToLinkedIn}
           >
-            📊 Post to LinkedIn
+            Post to LinkedIn
           </button>
           <button
             className="action-button slack-button"
             onClick={handleSendToSlack}
           >
-            💬 Send to Slack
+            Send to Slack
           </button>
         </div>
       )}
