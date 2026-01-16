@@ -3,15 +3,26 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
-// Toast configuration
-const toastConfig = {
-  position: "top-center",
-  autoClose: 3000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
+// Function to show notification (uses Adobe SDK if available, otherwise toast)
+const showNotification = async (type, title, message) => {
+  // Try Adobe SDK first (when running in Adobe Express)
+  if (window.adobeSDKReady && window.showAdobeDialog) {
+    const variant = type === 'error' ? 'error' : 'information';
+    await window.showAdobeDialog(variant, title, message);
+  } else {
+    // Fallback to react-toastify for development
+    if (type === 'error') {
+      toast.error(message, {
+        position: "top-center",
+        autoClose: 3000,
+      });
+    } else {
+      toast.success(message, {
+        position: "top-center",
+        autoClose: 3000,
+      });
+    }
+  }
 };
 
 function App() {
@@ -30,12 +41,12 @@ function App() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Validate content type selection
     if (!contentType) {
-      toast.error('Please choose the type of content you want to create', toastConfig);
+      await showNotification('error', 'Validation Error', 'Please choose the type of content you want to create');
       // Highlight dropdown
       if (dropdownRef.current) {
         dropdownRef.current.classList.add('highlight');
@@ -47,16 +58,16 @@ function App() {
     }
     
     // Show success message
-    toast.success('Created Successfully', toastConfig);
+    await showNotification('success', 'Success', 'Created Successfully');
     setShowActions(true);
   };
 
-  const handlePostToLinkedIn = () => {
-    toast.success('Posted on LinkedIn Successfully', toastConfig);
+  const handlePostToLinkedIn = async () => {
+    await showNotification('success', 'LinkedIn', 'Posted on LinkedIn Successfully');
   };
 
-  const handleSendToSlack = () => {
-    toast.success('Message sent successfully', toastConfig);
+  const handleSendToSlack = async () => {
+    await showNotification('success', 'Slack', 'Message sent successfully');
   };
 
   return (
