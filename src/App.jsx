@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
@@ -10,6 +10,7 @@ function App() {
   const [copyrightCheck, setCopyrightCheck] = useState(false);
   const [brandImages, setBrandImages] = useState(null);
   const [showActions, setShowActions] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleBrandImagesChange = (e) => {
     const files = e.target.files;
@@ -29,40 +30,28 @@ function App() {
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
-        draggable: true,
-        style: {
-          background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)',
-          color: 'white',
-          borderRadius: '12px',
-          fontWeight: '600'
-        }
+        draggable: true
       });
       // Highlight dropdown
-      document.querySelector('.dropdown-container').classList.add('highlight');
-      setTimeout(() => {
-        document.querySelector('.dropdown-container').classList.remove('highlight');
-      }, 2000);
+      if (dropdownRef.current) {
+        dropdownRef.current.classList.add('highlight');
+        setTimeout(() => {
+          dropdownRef.current.classList.remove('highlight');
+        }, 3000);
+      }
       return;
     }
     
-    // Simulate content creation
-    setTimeout(() => {
-      toast.success('Created Successfully', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        style: {
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          color: 'white',
-          borderRadius: '12px',
-          fontWeight: '600'
-        }
-      });
-      setShowActions(true);
-    }, 500);
+    // Show success message
+    toast.success('Created Successfully', {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true
+    });
+    setShowActions(true);
   };
 
   const handlePostToLinkedIn = () => {
@@ -72,13 +61,7 @@ function App() {
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
-      draggable: true,
-      style: {
-        background: 'linear-gradient(135deg, #0077b5 0%, #005885 100%)',
-        color: 'white',
-        borderRadius: '12px',
-        fontWeight: '600'
-      }
+      draggable: true
     });
   };
 
@@ -89,13 +72,7 @@ function App() {
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
-      draggable: true,
-      style: {
-        background: 'linear-gradient(135deg, #611f69 0%, #4a154b 100%)',
-        color: 'white',
-        borderRadius: '12px',
-        fontWeight: '600'
-      }
+      draggable: true
     });
   };
 
@@ -108,7 +85,6 @@ function App() {
       <div className="bottom-section">
         <form onSubmit={handleSubmit} className="input-form">
           <div className="input-box">
-            {/* Text Input */}
             <textarea
               className="message-input"
               value={contentText}
@@ -117,19 +93,17 @@ function App() {
               required
             />
             
-            {/* Icons Row Below Input */}
             <div className="input-toolbar">
-              <div className="dropdown-container">
+              <div className="dropdown-container" ref={dropdownRef}>
                 <span className="dropdown-text">
-                  {contentType ? (contentType === 'image' ? '🖼️ Image' : '🎨 Design') : 'Content Type ▼'}
+                  {contentType === 'image' ? '🖼️ Image ▼' : contentType === 'design' ? '🎨 Design ▼' : 'Content Type ▼'}
                 </span>
                 <select
                   className="toolbar-dropdown"
                   value={contentType}
                   onChange={(e) => setContentType(e.target.value)}
-                  title="Content Type"
                 >
-                  <option value="" disabled>Select type</option>
+                  <option value="">Select type</option>
                   <option value="image">🖼️ Image</option>
                   <option value="design">🎨 Design</option>
                 </select>
@@ -177,14 +151,16 @@ function App() {
             <button
               className="action-button linkedin-button"
               onClick={handlePostToLinkedIn}
+              type="button"
             >
-              🔗 LinkedIn
+              🔗 Post on LinkedIn
             </button>
             <button
               className="action-button slack-button"
               onClick={handleSendToSlack}
+              type="button"
             >
-              💬 Slack
+              💬 Send Message to Slack
             </button>
           </div>
         )}
