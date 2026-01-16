@@ -2,15 +2,30 @@
   "id": "adobe-express-addon",
   "name": "Content Publisher",
   "version": "1.0.0",
-  "manifestVersion": 1,
+  "manifestVersion": 2,
   "requirements": {
-    "apps": ["Express"]
+    "apps": [
+      {
+        "name": "Express",
+        "apiVersion": 1,
+        "supportedDeviceClass": ["desktop", "mobile"]
+      }
+    ],
+    "supportsTouch": true
   },
   "entryPoints": [
     {
       "type": "panel",
       "id": "panel1",
-      "main": "index.html"
+      "main": "index.html",
+      "permissions": {
+        "sandbox": [
+          "allow-scripts",
+          "allow-same-origin",
+          "allow-popups"
+        ]
+      }
     }
-  ]
+  ],
+  "testId": "adobe-express-content-publisher"
 }

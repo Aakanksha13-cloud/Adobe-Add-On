@@ -1,0 +1,6 @@
+{
+  "manifestVersion": 2,
+  "port": 5241,
+  "hostname": "localhost",
+  "bundler": "webpack"
+}
