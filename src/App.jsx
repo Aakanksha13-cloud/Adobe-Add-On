@@ -3,6 +3,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
+// Toast configuration
+const toastConfig = {
+  position: "top-center",
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 function App() {
   const [contentText, setContentText] = useState('');
   const [contentType, setContentType] = useState('');
@@ -24,14 +35,7 @@ function App() {
     
     // Validate content type selection
     if (!contentType) {
-      toast.error('Please choose the type of content you want to create', {
-        position: "top-center",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true
-      });
+      toast.error('Please choose the type of content you want to create', toastConfig);
       // Highlight dropdown
       if (dropdownRef.current) {
         dropdownRef.current.classList.add('highlight');
@@ -43,37 +47,16 @@ function App() {
     }
     
     // Show success message
-    toast.success('Created Successfully', {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true
-    });
+    toast.success('Created Successfully', toastConfig);
     setShowActions(true);
   };
 
   const handlePostToLinkedIn = () => {
-    toast.success('Posted on LinkedIn Successfully', {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true
-    });
+    toast.success('Posted on LinkedIn Successfully', toastConfig);
   };
 
   const handleSendToSlack = () => {
-    toast.success('Message sent successfully', {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true
-    });
+    toast.success('Message sent successfully', toastConfig);
   };
 
   return (
@@ -166,7 +149,18 @@ function App() {
         )}
       </div>
 
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }
