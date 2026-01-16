@@ -79,84 +79,51 @@ function App() {
     <div className="app-container">
       <div className="content-area">
         <h1 className="app-title">✨ Content Publisher</h1>
-        
-        <div className="info-section">
-          <div className="info-card">
-            <div className="info-icon">🖼️</div>
-            <div className="info-text">
-              <strong>Content Type</strong>
-              <span>Select image or design from input controls</span>
-            </div>
-          </div>
-          
-          <div className="info-card">
-            <div className="info-icon">📎</div>
-            <div className="info-text">
-              <strong>Brand Assets</strong>
-              <span>{brandImages ? `${Array.from(brandImages).length} file(s) selected` : 'No files selected'}</span>
-            </div>
-          </div>
-          
-          <div className="info-card">
-            <div className="info-icon">{complianceCheck ? '✅' : '☑️'}</div>
-            <div className="info-text">
-              <strong>Compliance</strong>
-              <span>{complianceCheck ? 'Enabled' : 'Disabled'}</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div className="bottom-section">
         <form onSubmit={handleSubmit} className="input-form">
-          <div className="input-wrapper">
+          <div className="input-box">
             <textarea
               className="message-input"
               value={contentText}
               onChange={(e) => setContentText(e.target.value)}
               placeholder="✍️ Type your content here..."
               required
-              rows="3"
             />
-            <div className="input-actions">
+            <div className="input-toolbar">
               {/* Content Type Dropdown */}
-              <div className="action-icon-wrapper">
-                <select
-                  className="icon-dropdown"
-                  value={contentType}
-                  onChange={(e) => setContentType(e.target.value)}
-                  title="Content Type"
-                >
-                  <option value="image">🖼️</option>
-                  <option value="design">🎨</option>
-                </select>
-              </div>
+              <select
+                className="toolbar-icon"
+                value={contentType}
+                onChange={(e) => setContentType(e.target.value)}
+                title="Content Type"
+              >
+                <option value="image">🖼️</option>
+                <option value="design">🎨</option>
+              </select>
               
               {/* Brand Images Upload */}
-              <div className="action-icon-wrapper">
-                <label className="icon-button" title="Upload Brand Images">
-                  <input
-                    type="file"
-                    className="hidden-file-input"
-                    onChange={handleBrandImagesChange}
-                    accept="image/*"
-                    multiple
-                  />
-                  📎
-                </label>
-              </div>
+              <label className="toolbar-icon" title="Upload Brand Images">
+                <input
+                  type="file"
+                  className="hidden-file-input"
+                  onChange={handleBrandImagesChange}
+                  accept="image/*"
+                  multiple
+                />
+                📎
+              </label>
               
               {/* Compliance Check Toggle */}
-              <div className="action-icon-wrapper">
-                <button
-                  type="button"
-                  className={`icon-button ${complianceCheck ? 'active' : ''}`}
-                  onClick={() => setComplianceCheck(!complianceCheck)}
-                  title="Compliance Check"
-                >
-                  {complianceCheck ? '✅' : '☑️'}
-                </button>
-              </div>
+              <button
+                type="button"
+                className={`toolbar-icon ${complianceCheck ? 'active' : ''}`}
+                onClick={() => setComplianceCheck(!complianceCheck)}
+                title="Compliance Check"
+              >
+                {complianceCheck ? '✅' : '☑️'}
+              </button>
             </div>
           </div>
           
