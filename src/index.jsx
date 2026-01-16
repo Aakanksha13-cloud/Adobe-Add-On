@@ -2,13 +2,40 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
-// Import Adobe SDK
-import addOnUISdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
-
-// Initialize Adobe SDK
+// Initialize Adobe SDK at runtime (not static import)
 const initAdobeSDK = async () => {
   if (typeof window !== 'undefined') {
+    // Check if SDK is available in parent window (Adobe Express environment)
+    const checkForSDK = () => {
+      // Check multiple possible locations for the SDK
+      if (window.parent && window.parent.addOnUISdk) {
+        return window.parent.addOnUISdk;
+      }
+      if (window.addOnUISdk) {
+        return window.addOnUISdk;
+      }
+      return null;
+    };
+
     try {
+      // Wait a bit for SDK to be available (in case it's still loading)
+      let addOnUISdk = checkForSDK();
+      let attempts = 0;
+      const maxAttempts = 10;
+      
+      while (!addOnUISdk && attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+        addOnUISdk = checkForSDK();
+        attempts++;
+      }
+
+      if (!addOnUISdk) {
+        // SDK not available - running outside Adobe Express
+        console.log("Adobe SDK not detected - using fallback notifications (react-toastify)");
+        window.adobeSDKReady = false;
+        return;
+      }
+
       // Wait for SDK to be ready
       await addOnUISdk.ready;
       
@@ -37,8 +64,9 @@ const initAdobeSDK = async () => {
       
       console.log("Adobe SDK initialized successfully");
     } catch (error) {
-      console.log("Running outside Adobe Express - using fallback notifications");
-      console.error("SDK initialization error:", error);
+      // Gracefully handle SDK initialization errors
+      console.log("Adobe SDK initialization failed - using fallback notifications (react-toastify)");
+      console.log("This is normal when running outside Adobe Express");
       window.adobeSDKReady = false;
     }
   }
