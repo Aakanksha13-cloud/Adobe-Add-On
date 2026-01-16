@@ -1,24 +1,24 @@
 # Adobe Express Content Publisher Add-On
 
-A beautiful, React-based Adobe Express Add-On that helps you create and publish content to LinkedIn and Slack with compliance checks and brand management.
+A professional, React-based Adobe Express Add-On for enterprise content creation and publishing to LinkedIn and Slack with compliance checks and brand management.
 
 ## Features
 
-✨ **Content Creation**
-- Rich text input for your content
-- Dropdown selection between Image and Design content types
-- Compliance check toggle for content validation
-- Brand details image upload support
+**Content Management**
+- Rich text input for content creation
+- Content type selection (Image/Design)
+- Compliance check validation toggle
+- Brand asset image upload with multi-file support
 
-🎨 **Beautiful UI**
-- Modern pastel color scheme
-- Smooth animations and transitions
-- Responsive design
-- Toast notifications for user feedback
+**Professional Interface**
+- Corporate design system with clean aesthetics
+- Professional color scheme and typography
+- Responsive 320px layout optimized for Adobe panels
+- Real-time notification system
 
-🚀 **Integrations**
-- **Post to LinkedIn**: Share your content with image and text
-- **Send to Slack**: Send messages to your Slack workspace
+**Platform Integrations**
+- **LinkedIn Publishing**: Share content with image and text parameters
+- **Slack Messaging**: Send messages directly to your Slack workspace
 
 ## Installation
 
