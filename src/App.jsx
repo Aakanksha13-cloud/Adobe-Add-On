@@ -22,7 +22,7 @@ function App() {
     
     // Simulate content creation
     setTimeout(() => {
-      toast.success('Content Created Successfully', {
+      toast.success('✨ Content Created Successfully!', {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -30,7 +30,7 @@ function App() {
         pauseOnHover: true,
         draggable: true,
         style: {
-          background: 'linear-gradient(135deg, #b8a9d4 0%, #a29cbd 100%)',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           color: 'white',
           borderRadius: '12px',
           fontWeight: '600'
@@ -46,11 +46,11 @@ function App() {
       image: brandImages ? Array.from(brandImages).map(f => f.name).join(', ') : 'No image'
     };
     
-    toast.info(`Posting to LinkedIn\nText: ${params.text}\nImage: ${params.image}`, {
+    toast.info(`🔗 Posting to LinkedIn\nText: ${params.text}\nImage: ${params.image}`, {
       position: "top-center",
       autoClose: 4000,
       style: {
-        background: 'linear-gradient(135deg, #a8d8ea 0%, #88c6db 100%)',
+        background: 'linear-gradient(135deg, #0077b5 0%, #005885 100%)',
         color: 'white',
         borderRadius: '12px'
       }
@@ -62,12 +62,12 @@ function App() {
       text: contentText
     };
     
-    toast.info(`Sending Message to Slack\nMessage: ${params.text}`, {
+    toast.info(`💬 Sending to Slack\nMessage: ${params.text}`, {
       position: "top-center",
       autoClose: 4000,
       style: {
-        background: 'linear-gradient(135deg, #ffd5e5 0%, #ffb8d4 100%)',
-        color: '#6b5b95',
+        background: 'linear-gradient(135deg, #611f69 0%, #4a154b 100%)',
+        color: 'white',
         borderRadius: '12px'
       }
     });
@@ -75,7 +75,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1 className="app-title">Content Publisher</h1>
+      <h1 className="app-title">✨ Content Publisher</h1>
       
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -147,13 +147,13 @@ function App() {
             className="action-button linkedin-button"
             onClick={handlePostToLinkedIn}
           >
-            Post to LinkedIn
+            🔗 LinkedIn
           </button>
           <button
             className="action-button slack-button"
             onClick={handleSendToSlack}
           >
-            Send to Slack
+            💬 Slack
           </button>
         </div>
       )}
