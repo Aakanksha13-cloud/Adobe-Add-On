@@ -56,10 +56,11 @@ function App() {
       }
       return;
     }
-    
+    console.log('Setting showActions to true'); // Add this
     // Show success message
     await showNotification('success', 'Success', 'Created Successfully');
     setShowActions(true);
+    console.log('showActions state:', showActions); // Add this
   };
 
   const handlePostToLinkedIn = async () => {
