@@ -151,10 +151,10 @@ body {
 .toolbar-icon:hover::after {
   content: attr(title);
   position: absolute;
-  bottom: -24px;
+  top: -28px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
