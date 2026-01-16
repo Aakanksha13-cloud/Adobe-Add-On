@@ -1,0 +1,259 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: linear-gradient(135deg, #ffeef8 0%, #e8f5ff 100%);
+  padding: 20px;
+}
+
+.app-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.app-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #6b5b95;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b5b95;
+  margin-bottom: 8px;
+}
+
+.text-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e8d5f2;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: #fef9ff;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #b8a9d4;
+  background: white;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e8d5f2;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: #fef9ff;
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.textarea-input:focus {
+  outline: none;
+  border-color: #b8a9d4;
+  background: white;
+}
+
+.select-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e8d5f2;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: #fef9ff;
+  cursor: pointer;
+}
+
+.select-input:focus {
+  outline: none;
+  border-color: #b8a9d4;
+  background: white;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background: #fff5f9;
+  border-radius: 12px;
+  border: 2px solid #ffd5e5;
+}
+
+.toggle-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b5b95;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 56px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d5e8f7;
+  transition: 0.4s;
+  border-radius: 28px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #b8a9d4;
+}
+
+input:checked + .slider:before {
+  transform: translateX(28px);
+}
+
+.file-input-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  border: 2px dashed #e8d5f2;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #fef9ff;
+}
+
+.file-input-wrapper:hover {
+  border-color: #b8a9d4;
+  background: #f9f3ff;
+}
+
+.file-input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.file-input-text {
+  font-size: 14px;
+  color: #6b5b95;
+}
+
+.file-name {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #8b7ba8;
+  font-style: italic;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #b8a9d4 0%, #a29cbd 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(107, 91, 149, 0.3);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.action-button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.linkedin-button {
+  background: linear-gradient(135deg, #a8d8ea 0%, #88c6db 100%);
+  color: white;
+}
+
+.linkedin-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(168, 216, 234, 0.4);
+}
+
+.slack-button {
+  background: linear-gradient(135deg, #ffd5e5 0%, #ffb8d4 100%);
+  color: #6b5b95;
+}
+
+.slack-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255, 213, 229, 0.4);
+}
+
+.action-button:active {
+  transform: translateY(0);
+}
+
+.hidden {
+  display: none;
+}

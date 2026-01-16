@@ -1,0 +1,16 @@
+{
+  "id": "adobe-express-addon",
+  "name": "Content Publisher",
+  "version": "1.0.0",
+  "manifestVersion": 1,
+  "requirements": {
+    "apps": ["Express"]
+  },
+  "entryPoints": [
+    {
+      "type": "panel",
+      "id": "panel1",
+      "main": "index.html"
+    }
+  ]
+}
