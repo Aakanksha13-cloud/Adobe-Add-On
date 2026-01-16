@@ -66,14 +66,13 @@ function App() {
       </div>
 
       <div className="bottom-section">
-        <form onSubmit={handleSubmit} className="input-form">
+        <form onSubmit={handleSubmit} className="input-form" noValidate>
           <div className="input-box">
             <textarea
               className="message-input"
               value={contentText}
               onChange={(e) => setContentText(e.target.value)}
               placeholder="✍️ Type your content here..."
-              required
             />
             
             <div className="input-toolbar">
